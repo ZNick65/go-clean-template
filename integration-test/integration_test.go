@@ -9,7 +9,7 @@ import (
 
 	. "github.com/Eun/go-hit"
 
-	"github.com/evrone/go-clean-template/pkg/rabbitmq/rmq_rpc/client"
+	"github.com/ZNick65/go-clean-template/pkg/rabbitmq/rmq_rpc/client"
 )
 
 const (
@@ -62,9 +62,9 @@ func healthCheck(attempts int) error {
 // HTTP POST: /translation/do-translate.
 func TestHTTPDoTranslate(t *testing.T) {
 	body := `{
+		"source": "auto",
 		"destination": "en",
-		"original": "текст для перевода",
-		"source": "auto"
+		"original": "текст для перевода"
 	}`
 	Test(t,
 		Description("DoTranslate Success"),
@@ -72,7 +72,7 @@ func TestHTTPDoTranslate(t *testing.T) {
 		Send().Headers("Content-Type").Add("application/json"),
 		Send().Body().String(body),
 		Expect().Status().Equal(http.StatusOK),
-		Expect().Body().JSON().JQ(".translation").Equal("text for translation"),
+		Expect().Body().JSON().JQ(".translation").Equal("text to translate"),
 	)
 
 	body = `{

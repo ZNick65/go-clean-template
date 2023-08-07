@@ -1,13 +1,14 @@
 package v1
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/evrone/go-clean-template/internal/entity"
-	"github.com/evrone/go-clean-template/internal/usecase"
-	"github.com/evrone/go-clean-template/pkg/logger"
+	"github.com/ZNick65/go-clean-template/internal/entity"
+	"github.com/ZNick65/go-clean-template/internal/usecase"
+	"github.com/ZNick65/go-clean-template/pkg/logger"
 )
 
 type translationRoutes struct {
@@ -70,9 +71,7 @@ type doTranslateRequest struct {
 func (r *translationRoutes) doTranslate(c *gin.Context) {
 	var request doTranslateRequest
 	if err := c.ShouldBindJSON(&request); err != nil {
-		r.l.Error(err, "http - v1 - doTranslate")
-		errorResponse(c, http.StatusBadRequest, "invalid request body")
-
+		r.l.Error(err, fmt.Sprintf("http - v1 - doTranslate, body: %+v", c.Request.Body))
 		return
 	}
 
@@ -90,6 +89,8 @@ func (r *translationRoutes) doTranslate(c *gin.Context) {
 
 		return
 	}
+
+	r.l.Debug(fmt.Sprintf("doTranslate, request: %+v, translation: %+v", request, translation))
 
 	c.JSON(http.StatusOK, translation)
 }

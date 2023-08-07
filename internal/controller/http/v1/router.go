@@ -10,13 +10,11 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 
 	// Swagger docs.
-	_ "github.com/evrone/go-clean-template/docs"
-	"github.com/evrone/go-clean-template/internal/usecase"
-	"github.com/evrone/go-clean-template/pkg/logger"
+	_ "github.com/ZNick65/go-clean-template/docs"
+	"github.com/ZNick65/go-clean-template/internal/usecase"
+	"github.com/ZNick65/go-clean-template/pkg/logger"
 )
 
-// NewRouter -.
-// Swagger spec:
 // @title       Go Clean Template API
 // @description Using a translation service as an example
 // @version     1.0

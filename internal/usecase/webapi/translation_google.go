@@ -5,7 +5,7 @@ import (
 
 	translator "github.com/Conight/go-googletrans"
 
-	"github.com/evrone/go-clean-template/internal/entity"
+	"github.com/ZNick65/go-clean-template/internal/entity"
 )
 
 // TranslationWebAPI -.

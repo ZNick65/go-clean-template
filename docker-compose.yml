@@ -11,21 +11,21 @@ services:
       POSTGRES_PASSWORD: 'pass'
       POSTGRES_DB: 'postgres'
     ports:
-      - 5432:5432
+      - 54322:5432
 
   rabbitmq:
     container_name: rabbitmq
     image: rabbitmq:3.8.12-management
     ports:
-      - 5672:5672
-      - 15672:15672
+      - 5679:5672
+      - 15679:15672
 
   app:
     build: .
     container_name: app
     image: app
     environment:
-      PG_URL: 'postgres://user:pass@postgres:5432/postgres'
+      PG_URL: 'postgres://user:pass@postgres:54322/postgres'
       RMQ_URL: 'amqp://guest:guest@rabbitmq:5672/'
     ports:
       - 8080:8080
